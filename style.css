@@ -1,0 +1,31 @@
+body {
+  background-color: wheat;
+}
+.mainContainer {
+  border: solid blue;
+  width: 50vw;
+  height: 50vh;
+  justify-self: center;
+}
+.jokeDisplay {
+  border: solid red;
+  height: 50%;
+  width: 90%;
+  justify-self: center;
+  margin-top: 2em;
+}
+.getJokes {
+  width: 80px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  border-radius: 50px;
+  margin: 2em;
+  margin-left: 30em;
+}
+#category {
+  margin-left: 60em;
+  margin-top: 2em;
+  height: 30px;
+  width: 100px;
+}
