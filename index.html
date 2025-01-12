@@ -11,14 +11,41 @@
   </head>
   <body>
     <div class="mainContainer">
-      <select name="select" id="category">
-        <option value="">Category</option>
-      </select>
+      <select name="select" id="category"></select>
 
       <div class="jokeDisplay"></div>
       <button class="getJokes">Get Jokes</button>
+
+      <button class="postJoke">Post a joke</button>
     </div>
 
-    <script src="index.js" async defer></script>
+    <div class="form-container">
+      <h1>Post Your Joke</h1>
+      <form id="jokeForm">
+        <label for="category">Category:</label>
+        <input
+          type="text"
+          id="categorypost"
+          name="category"
+          class="content"
+          placeholder="Enter the joke category"
+          required
+        />
+
+        <label for="joke">Joke:</label>
+        <input
+          type="text"
+          id="joke"
+          name="joke"
+          class="content"
+          placeholder="Enter the joke"
+          required
+        />
+
+        <button type="submit" class="submit-button">Submit Joke</button>
+      </form>
+    </div>
+
+    <script type="module" src="index.js"></script>
   </body>
 </html>

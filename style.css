@@ -1,31 +1,143 @@
 body {
   background-color: wheat;
+  display: flex;
+  justify-content: center;
+
+  height: 100vh;
+  margin: 0;
 }
+
 .mainContainer {
   border: solid blue;
-  width: 50vw;
-  height: 50vh;
-  justify-self: center;
+  width: 90%;
+  max-width: 80vw;
+  height: 70vh;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: blanchedalmond;
 }
+
 .jokeDisplay {
   border: solid red;
-  height: 50%;
   width: 90%;
-  justify-self: center;
-  margin-top: 2em;
+  height: 60%;
+  margin-top: 1em;
+  padding: 1em;
+  overflow-y: auto;
+  font-family: fantasy;
+  font-size: 40px;
+  text-align: center;
+  /* padding-top: 5em; */
+  background-color: bisque;
 }
+
 .getJokes {
-  width: 80px;
+  width: 100%;
+  max-width: 200px;
   height: 40px;
   background-color: white;
   border: none;
   border-radius: 50px;
-  margin: 2em;
-  margin-left: 30em;
+  margin: 1em 0;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+.postJoke {
+  width: 100%;
+  max-width: 200px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  border-radius: 50px;
+  margin: 2em 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.getJokes:hover {
+  background-color: lightgray;
+}
+
 #category {
-  margin-left: 60em;
-  margin-top: 2em;
+  width: 100%;
+  max-width: 200px;
   height: 30px;
-  width: 100px;
+  margin-top: 2em;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  background-color: wheat;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+input.content {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button.submit-button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.submit-button:hover {
+  background-color: #218838;
+}
+#joke {
+  height: 60px;
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    width: 95%;
+  }
+
+  .getJokes {
+    width: 100%;
+  }
+  .favoriteJoke {
+    width: 100%;
+  }
+
+  #category {
+    width: 100%;
+  }
 }
