@@ -2,7 +2,6 @@ import { getCategories, getJoke } from "./api.js";
 import { displayJoke, populateCategories } from "./ui.js";
 
 let selectedCategory = "Any";
-let favoriteJokes = []; // Array to store favorite jokes
 
 document.addEventListener("DOMContentLoaded", async () => {
   // Fetch categories and populate the dropdown
@@ -22,58 +21,63 @@ document.addEventListener("DOMContentLoaded", async () => {
     displayJoke(joke);
   });
 
-  // Event listener for the Favorite Joke button
-  const favoriteBtn = document.querySelector(".favoriteJoke");
-  favoriteBtn.addEventListener("click", () => {
-    const joke = document.querySelector(".jokeDisplay p").textContent;
-    if (joke && !favoriteJokes.includes(joke)) {
-      favoriteJokes.push(joke); // Add joke to favorites
-      console.log("Favorite Jokes: ", favoriteJokes);
-      alert("Joke is added to your favorite");
-    }
-  });
-});
+  document.querySelector(".postJoke").addEventListener("click", showPostForm);
 
-//function to post a joke to the api
-
-document.querySelector(".postJoke").addEventListener("click", showPostForm);
-
-function showPostForm() {
-  document.querySelector(".mainContainer").style.display = "none";
-  document.querySelector(".form-container ").style.display = "block";
-}
-document
-  .getElementById("jokeForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Call the postJoke function
-    postJoke();
-  });
-
-async function postJoke() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        title: document.getElementById("categorypost").value,
-        body: document.getElementById("joke").value,
-        userId: 1,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    if (!response.ok) {
-      throw new Error("Failed to post the joke");
-    } else {
-      const data = await response.json();
-      console.log("posted", data);
-    }
-    alert("Joke has been posted.");
-    document.querySelector(".mainContainer").style.display = "flex";
-    document.querySelector(".form-container ").style.display = "none";
-  } catch (error) {
-    console.log(error.message);
+  // Show the form to post a joke
+  function showPostForm() {
+    document.querySelector(".mainContainer").style.display = "none";
+    document.querySelector(".form-container").style.display = "block";
   }
-}
+
+  // Event listener for the joke form submission
+  document
+    .getElementById("jokeForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      postJoke();
+    });
+
+  // The async function to post the joke to the API
+  async function postJoke() {
+    try {
+      // Fetch request to the placeholder API
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+        {
+          method: "POST", // Set the method to POST
+          body: JSON.stringify({
+            title: document.getElementById("categorypost").value, // Get the category input value
+            body: document.getElementById("joke").value, // Get the joke input value
+            userId: 1, // You can set any userId you like
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8", // Ensure the request is in JSON format
+          },
+        }
+      );
+
+      // Check if the response is OK (status 200-299)
+      if (!response.ok) {
+        throw new Error("Failed to post the joke"); // If the request failed, throw an error
+      }
+
+      // If the post was successful, parse the JSON data and log it
+      const data = await response.json();
+      console.log("Posted:", data);
+
+      // Show a success message to the user
+      alert("Joke has been posted.");
+
+      // Hide the form and return to the main container
+
+      document.querySelector(".mainContainer").style.display = "flex";
+      displayJoke("");
+      document.querySelector(".form-container").style.display = "none";
+    } catch (error) {
+      console.log(error.message); // Log any errors that occur
+    }
+  }
+
+  // Initially hide the form
+  document.querySelector(".form-container").style.display = "none";
+});
