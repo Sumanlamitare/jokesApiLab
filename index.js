@@ -37,28 +37,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       postJoke();
     });
 
-  // The async function to post the joke to the API
   async function postJoke() {
     try {
-      // Fetch request to the placeholder API
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/posts",
         {
           method: "POST", // Set the method to POST
           body: JSON.stringify({
-            title: document.getElementById("categorypost").value, // Get the category input value
-            body: document.getElementById("joke").value, // Get the joke input value
+            title: document.getElementById("categorypost").value,
+            body: document.getElementById("joke").value,
             userId: 1, // You can set any userId you like
           }),
           headers: {
-            "Content-type": "application/json; charset=UTF-8", // Ensure the request is in JSON format
+            "Content-type": "application/json; charset=UTF-8",
           },
         }
       );
 
-      // Check if the response is OK (status 200-299)
       if (!response.ok) {
-        throw new Error("Failed to post the joke"); // If the request failed, throw an error
+        throw new Error("Failed to post the joke");
       }
 
       // If the post was successful, parse the JSON data and log it

@@ -1,5 +1,3 @@
-// ui.js
-
 // Function to display a joke on the UI
 export function displayJoke(joke) {
   const displayJoke = document.querySelector(".jokeDisplay");
